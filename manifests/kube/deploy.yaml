@@ -2,14 +2,14 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: test-action
-  namespace: test-action
+  namespace: foo
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: test-action
-  namespace: test-action
+  namespace: foo
 spec:
   replicas: 1
   selector:

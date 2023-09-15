@@ -1,10 +1,16 @@
-from flask import Flask
+from flask import Flask,jsonify,request
+
 app = Flask(__name__)
 
-@app.route('/')
-def hello_geek():
-    return '<h1>Hello from Test Action</h2>'
+@app.route('/data', methods = ['GET'])
+def ReturnJSON():
+	if(request.method == 'GET'):
+		data = {
+			"server" : "test-data",
+			"msg" : "hi",
+		}
 
+		return jsonify(data)
 
-if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+if __name__=='__main__':
+	 app.run(debug=True, port=8080)
