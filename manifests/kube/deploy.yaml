@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: test-action
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-action
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-action
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: test-action
+        version: v1
+    spec:
+      serviceAccountName: test-action
+      containers:
+      - image: docker.io/asayahtest/test-action
+        imagePullPolicy: IfNotPresent
+        name: test-action
+        ports:
+        - containerPort: 8080
